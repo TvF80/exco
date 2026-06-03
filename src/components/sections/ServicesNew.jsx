@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, Users, BookOpen, List, ChevronRight } from 'lucide-react'
+import { X, ExternalLink, Users, BookOpen, List, ChevronRight, ChevronDown, Mail } from 'lucide-react'
 import { services } from '../../data/services'
 import { teamByService } from '../../data/team'
 
@@ -10,11 +10,84 @@ const TABS = [
   { id: 'eksperci', label: 'Eksperci', Icon: Users },
 ]
 
+function SubcategoryAccordion({ subcategories, color }) {
+  const [openIdx, setOpenIdx] = useState(null)
+
+  return (
+    <div className="space-y-2">
+      {subcategories.map((sub, idx) => {
+        const isOpen = openIdx === idx
+        return (
+          <motion.div
+            key={sub.name}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: idx * 0.04 }}
+            className="rounded-xl overflow-hidden"
+            style={{
+              background: isOpen ? `${color}10` : 'rgba(255,255,255,0.03)',
+              border: `1px solid ${isOpen ? color + '35' : 'rgba(255,255,255,0.06)'}`,
+              transition: 'background 0.2s, border-color 0.2s',
+            }}
+          >
+            {/* Header row */}
+            <button
+              onClick={() => setOpenIdx(isOpen ? null : idx)}
+              className="w-full flex items-center gap-3 p-3.5 text-left"
+            >
+              <div
+                className="w-2 h-2 rounded-full shrink-0 transition-transform duration-200"
+                style={{
+                  background: isOpen ? color : 'rgba(255,255,255,0.25)',
+                  transform: isOpen ? 'scale(1.4)' : 'scale(1)',
+                }}
+              />
+              <span
+                className="flex-1 text-sm font-semibold leading-snug transition-colors"
+                style={{ color: isOpen ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.65)' }}
+              >
+                {sub.name}
+              </span>
+              <ChevronDown
+                size={14}
+                className="shrink-0 transition-transform duration-200"
+                style={{
+                  color: isOpen ? color : 'rgba(255,255,255,0.2)',
+                  transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                }}
+              />
+            </button>
+
+            {/* Expanded description */}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.22, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <p
+                    className="px-4 pb-4 text-sm leading-relaxed"
+                    style={{ color: 'rgba(255,255,255,0.55)', borderTop: `1px solid ${color}20` }}
+                  >
+                    {sub.desc}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function ServicesNew({ onMemberClick, activeServiceId, onServiceIdConsumed }) {
   const [active, setActive] = useState(null)
   const [tab, setTab] = useState('opis')
 
-  // External trigger: jump to a service when coming from team modal
   useEffect(() => {
     if (activeServiceId) {
       setActive(activeServiceId)
@@ -56,7 +129,7 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
             <span style={{ color: '#0170b9' }}>pełne wsparcie</span>
           </h2>
           <p className="text-white/50 max-w-xl mx-auto">
-            Kliknij usługę, aby zobaczyć pełny opis, zakres i ekspertów odpowiedzialnych za ten obszar.
+            Kliknij usługę, aby zobaczyć pełny opis, zakres i ekspertów. W zakładce Zakres kliknij każdą pozycję, aby rozwinąć szczegółowy opis.
           </p>
         </motion.div>
 
@@ -79,7 +152,6 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
                   border: `1px solid ${isActive ? svc.color : 'rgba(255,255,255,0.08)'}`,
                 }}
               >
-                {/* Hover shine */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
                   style={{ background: isActive ? 'rgba(255,255,255,0.08)' : `${svc.color}08` }}
@@ -169,10 +241,7 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
               </div>
 
               {/* Tabs */}
-              <div
-                className="flex border-b px-5"
-                style={{ borderColor: `${activeService.color}15` }}
-              >
+              <div className="flex border-b px-5" style={{ borderColor: `${activeService.color}15` }}>
                 {TABS.map(({ id, label, Icon }) => {
                   const isTab = tab === id
                   return (
@@ -210,12 +279,13 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
                   transition={{ duration: 0.2 }}
                   className="p-5"
                 >
+                  {/* === OPI S === */}
                   {tab === 'opis' && (
-                    <div className="max-w-2xl space-y-4">
-                      <p className="text-white/70 leading-relaxed">
+                    <div className="max-w-2xl space-y-5">
+                      <p className="text-white/70 leading-relaxed text-sm">
                         {activeService.description}
                       </p>
-                      <div className="flex gap-3 flex-wrap pt-2">
+                      <div className="flex gap-3 flex-wrap">
                         <a
                           href={activeService.url}
                           target="_blank"
@@ -241,34 +311,37 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
                             style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.1)' }}
                           >
                             <Users size={14} />
-                            Poznaj ekspertów
+                            Poznaj ekspertów ({activeTeam.length})
                           </button>
                         )}
                       </div>
                     </div>
                   )}
 
+                  {/* === ZAKRES — accordion === */}
                   {tab === 'zakres' && (
-                    <div className="grid sm:grid-cols-2 gap-2">
-                      {activeService.subcategories.map((sub, idx) => (
-                        <motion.div
-                          key={sub}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.04 }}
-                          className="flex items-start gap-3 p-3 rounded-xl"
-                          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}
+                    <div>
+                      <p className="text-xs text-white/30 mb-3 uppercase tracking-widest">
+                        Kliknij pozycję, aby rozwinąć opis
+                      </p>
+                      <SubcategoryAccordion
+                        subcategories={activeService.subcategories}
+                        color={activeService.color}
+                      />
+                      <div className="mt-5 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                        <a
+                          href={`mailto:war@exco.pl?subject=Zapytanie: ${activeService.title}`}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all active:scale-95"
+                          style={{ background: activeService.color }}
                         >
-                          <span
-                            className="w-2 h-2 rounded-full mt-1.5 shrink-0"
-                            style={{ background: activeService.color }}
-                          />
-                          <span className="text-sm text-white/70 leading-snug">{sub}</span>
-                        </motion.div>
-                      ))}
+                          <Mail size={14} />
+                          Zapytaj o tę usługę
+                        </a>
+                      </div>
                     </div>
                   )}
 
+                  {/* === EKSPERCI === */}
                   {tab === 'eksperci' && (
                     activeTeam.length === 0 ? (
                       <p className="text-sm text-white/30">Skontaktuj się z nami, aby poznać właściwego eksperta.</p>
@@ -285,7 +358,10 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
                             style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
                             title={`${person.name} — kliknij aby zobaczyć profil`}
                           >
-                            <div className="relative w-16 h-16 rounded-full overflow-hidden ring-2" style={{ boxShadow: `0 0 0 2px ${person.color}` }}>
+                            <div
+                              className="relative w-16 h-16 rounded-full overflow-hidden"
+                              style={{ boxShadow: `0 0 0 2px ${person.color}` }}
+                            >
                               <img
                                 src={person.photo}
                                 alt={person.name}
@@ -303,8 +379,9 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
                               </div>
                             </div>
                             <div>
-                              <p className="text-xs font-semibold text-white leading-tight">{person.name.split(' ')[0]}</p>
-                              <p className="text-xs font-semibold text-white leading-tight">{person.name.split(' ').slice(1).join(' ')}</p>
+                              <p className="text-xs font-semibold text-white leading-tight">
+                                {person.name.split(' ')[0]} {person.name.split(' ')[1]}
+                              </p>
                               <p className="text-[10px] text-white/40 mt-0.5 leading-tight line-clamp-2">{person.title}</p>
                             </div>
                             <div

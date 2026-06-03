@@ -35,11 +35,18 @@ export default function OfficeMapNew({ onServiceClick }) {
           >
             <svg viewBox="8 0 84 92" className="w-full max-w-xs">
               {/* Poland outline */}
+              {/* Proper Poland outline — calibrated to office dot positions */}
               <path
-                d="M38 8 L44 6 L52 4 L60 5 L67 8 L72 10 L76 14 L80 18 L82 22 L83 28 L85 32 L88 36 L88 40 L85 44 L82 47 L80 52 L78 56 L74 60 L72 65 L70 70 L68 74 L66 78 L63 80 L60 78 L58 74 L55 72 L52 74 L50 78 L47 80 L44 78 L41 74 L38 70 L35 68 L32 68 L28 66 L25 62 L22 58 L20 54 L18 50 L16 46 L14 42 L14 38 L16 34 L18 30 L20 26 L22 22 L25 18 L28 14 L32 10 Z"
+                d="M20,17 L28,13 L36,8 L47,6 L48,12 L54,11
+                   L71,10 L78,11
+                   L76,22 L79,42 L76,49 L79,57
+                   L71,73 L71,84 L55,81
+                   L42,72 L29,58 L25,57
+                   L22,38 L20,25 Z"
                 fill="rgba(1,112,185,0.15)"
-                stroke="rgba(1,112,185,0.3)"
+                stroke="rgba(1,112,185,0.35)"
                 strokeWidth="1.2"
+                strokeLinejoin="round"
               />
               {offices.map((o) => {
                 const isActive = active === o.id
