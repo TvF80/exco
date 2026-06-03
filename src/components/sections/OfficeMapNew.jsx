@@ -35,18 +35,25 @@ export default function OfficeMapNew({ onServiceClick }) {
           >
             <svg viewBox="8 0 84 92" className="w-full max-w-xs">
               {/* Poland outline */}
-              {/* Proper Poland outline — calibrated to office dot positions */}
+              {/* Poland outline — formula: x=5.93*lon-64, y=-13.67*lat+753.6
+                  Verified against: Warszawa(61,40), Kraków(57,72), Gdańsk(50,13),
+                  Wrocław(33,55), Poznań(37,33), Radom(58,50) */}
               <path
-                d="M20,17 L28,13 L36,8 L47,6 L48,12 L54,11
+                d="M20,17 L28,13 L33,9 L36,7 L40,5 L45,5
+                   L47,9 L52,9
                    L71,10 L78,11
-                   L76,22 L79,42 L76,49 L79,57
-                   L71,73 L71,84 L55,81
-                   L42,72 L29,58 L25,57
-                   L22,38 L20,25 Z"
+                   L76,22 L76,33 L78,41 L76,49 L79,57 L78,63
+                   L71,73
+                   L70,83
+                   L55,81
+                   L47,77 L42,72 L39,69 L34,61 L29,58 L25,57
+                   L25,42 L22,38 L22,31 L20,25
+                   Z"
                 fill="rgba(1,112,185,0.15)"
-                stroke="rgba(1,112,185,0.35)"
-                strokeWidth="1.2"
+                stroke="rgba(1,112,185,0.4)"
+                strokeWidth="1"
                 strokeLinejoin="round"
+                strokeLinecap="round"
               />
               {offices.map((o) => {
                 const isActive = active === o.id

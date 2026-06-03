@@ -73,7 +73,7 @@ export default function HeroNew({ onScrollDown }) {
             className="w-1.5 h-1.5 rounded-full"
             style={{ background: '#DA5B15', animation: 'pulse 2s infinite' }}
           />
-          Walne Spotkanie EXCO · 2026
+          Seminarium EXCO A2A Polska 2026
         </motion.div>
 
         {/* Main heading */}
