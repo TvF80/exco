@@ -8,7 +8,7 @@ export const offices = [
     phone: '+48 22 847 61 17',
     email: 'war@exco.pl',
     // SVG viewBox pozycje na mapie Polski (0-100 skala)
-    x: 65,
+    x: 60,
     y: 41,
     serviceIds: ['konsulting', 'audyt', 'due-diligence', 'outsourcing-ksiegowosci', 'outsourcing-kadr-i-plac', 'esg', 'wejscie-na-rynek-polski', 'uslugi-prawne'],
     teamMemberIds: [1, 2, 3, 4, 6, 7],
