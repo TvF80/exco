@@ -6,8 +6,8 @@ import { services } from '../../data/services'
 import { BgGeoRings } from '../BgPatterns'
 
 const FUTURE_OFFICES = [
-  { id: 'bialystok', city: 'Białystok', x: 86, y: 29, textLeft: true },
-  { id: 'rzeszow',   city: 'Rzeszów',   x: 78, y: 76, textLeft: true },
+  { id: 'bialystok', city: 'Białystok', x: 78, y: 29, textLeft: true },
+  { id: 'rzeszow',   city: 'Rzeszów',   x: 70, y: 76 },
   { id: 'katowice',  city: 'Katowice',  x: 49, y: 68 },
 ]
 
@@ -47,12 +47,12 @@ export default function OfficeMapNew({ onServiceClick }) {
                 d="M12,18 L22,15 L31,11 L38,10
                    L43,13 L46,9 L49,13
                    L54,13 L61,11 L69,12
-                   L78,16 L84,16
-                   L87,21 L87,29 L85,38 L85,44
-                   L88,51 L89,54
-                   L88,62 L84,66 L86,70 L79,74
-                   L77,77 L64,80 L58,82
-                   L55,81 L48,78
+                   L76,14 L82,15
+                   L85,20 L85,28 L83,37 L83,44
+                   L85,50 L86,53
+                   L85,61 L81,66 L78,72
+                   L75,76 L63,80 L57,82
+                   L54,81 L48,78
                    L48,71 L44,67 L40,66 L32,63 L22,61 L18,58
                    L15,51 L15,46 L14,40 L13,34 L13,28 L13,24
                    Z"
