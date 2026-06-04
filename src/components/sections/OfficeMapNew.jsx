@@ -9,6 +9,8 @@ const FUTURE_OFFICES = [
   { id: 'bialystok', city: 'Białystok', x: 78, y: 29, textLeft: true },
   { id: 'rzeszow',   city: 'Rzeszów',   x: 70, y: 76 },
   { id: 'katowice',  city: 'Katowice',  x: 49, y: 68 },
+  { id: 'szczecin',  city: 'Szczecin',  x: 17, y: 25 },
+  { id: 'klodzko',   city: 'Kłodzko',   x: 30, y: 65 },
 ]
 
 export default function OfficeMapNew({ onServiceClick }) {
@@ -53,7 +55,7 @@ export default function OfficeMapNew({ onServiceClick }) {
                    L85,61 L81,66 L78,72
                    L75,76 L63,80 L57,82
                    L54,81 L48,78
-                   L48,71 L44,67 L40,66 L32,63 L22,61 L18,58
+                   L43,74 L40,72 L33,70 L30,69 L25,64 L21,62 L17,58
                    L15,51 L15,46 L14,40 L13,34 L13,28 L13,24
                    Z"
                 fill="rgba(1,112,185,0.15)"
