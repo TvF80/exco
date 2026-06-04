@@ -28,7 +28,13 @@ export default function TeamGrid({ onMemberClick }) {
     <section
       id="team"
       className="min-h-svh py-20"
-      style={{ background: 'linear-gradient(rgba(8,4,0,0.95) 0%, rgba(10,10,10,0.97) 100%), url(/bg/team-bw.jpeg) center center / cover no-repeat' }}
+      style={{
+        background: [
+          'linear-gradient(180deg, rgba(7,5,2,0.98) 0%, rgba(9,8,10,0.99) 100%)',
+          'radial-gradient(circle, rgba(218,91,21,0.18) 1px, transparent 1px)',
+        ].join(','),
+        backgroundSize: 'auto, 30px 30px',
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}

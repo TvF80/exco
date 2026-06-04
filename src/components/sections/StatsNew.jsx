@@ -37,14 +37,60 @@ function AnimatedNumber({ value, suffix, delay = 0 }) {
 export default function StatsNew() {
   return (
     <section
-      className="py-20"
+      className="py-20 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #0C0800 0%, #0a1020 50%, #0C0800 100%)',
-        borderTop: '1px solid rgba(218,91,21,0.1)',
-        borderBottom: '1px solid rgba(1,112,185,0.1)',
+        background: '#05101e',
+        borderTop: '1px solid rgba(218,91,21,0.12)',
+        borderBottom: '1px solid rgba(1,112,185,0.12)',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Chart grid — horizontal lines like trading terminal */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: [
+          'linear-gradient(rgba(1,112,185,0.10) 1px, transparent 1px)',
+          'linear-gradient(90deg, rgba(1,112,185,0.05) 1px, transparent 1px)',
+        ].join(','),
+        backgroundSize: '100% 25%, 10% 100%',
+      }} />
+
+      {/* Trend lines — rising market chart */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 200" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="trendOrange" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stopColor="#DA5B15" stopOpacity="0"/>
+            <stop offset="15%"  stopColor="#DA5B15" stopOpacity="0.35"/>
+            <stop offset="85%"  stopColor="#DA5B15" stopOpacity="0.30"/>
+            <stop offset="100%" stopColor="#DA5B15" stopOpacity="0.05"/>
+          </linearGradient>
+          <linearGradient id="trendBlue" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stopColor="#0170b9" stopOpacity="0"/>
+            <stop offset="20%"  stopColor="#0170b9" stopOpacity="0.22"/>
+            <stop offset="100%" stopColor="#0170b9" stopOpacity="0.08"/>
+          </linearGradient>
+          <linearGradient id="areaOrange" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#DA5B15" stopOpacity="0.10"/>
+            <stop offset="100%" stopColor="#DA5B15" stopOpacity="0"/>
+          </linearGradient>
+        </defs>
+        {/* Area fill under main trend */}
+        <path d="M0 182 C180 172 360 152 560 122 S840 76 1000 56 L1180 36 1440 10 L1440 200 L0 200 Z" fill="url(#areaOrange)"/>
+        {/* Main orange trend */}
+        <path d="M0 182 C180 172 360 152 560 122 S840 76 1000 56 L1180 36 1440 10"
+              stroke="url(#trendOrange)" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+        {/* Secondary blue trend */}
+        <path d="M0 196 C260 189 520 174 760 158 S1120 132 1440 112"
+              stroke="url(#trendBlue)" strokeWidth="1.5" fill="none" strokeDasharray="10 5" strokeLinecap="round"/>
+        {/* Candlestick markers on orange trend */}
+        {[[190,162],[380,140],[570,112],[760,88],[950,66],[1140,44],[1330,20]].map(([x, y], i) => (
+          <g key={x} opacity={i % 2 === 0 ? 0.55 : 0.42}>
+            <line x1={x} y1={y - 8}  x2={x} y2={y - 4}  stroke={i % 3 ? '#DA5B15' : '#0170b9'} strokeWidth="1.2"/>
+            <rect x={x - 2.5} y={y - 4} width="5" height="12" fill={i % 3 ? '#DA5B15' : '#0170b9'} rx="1"/>
+            <line x1={x} y1={y + 8}  x2={x} y2={y + 13} stroke={i % 3 ? '#DA5B15' : '#0170b9'} strokeWidth="1.2"/>
+          </g>
+        ))}
+      </svg>
+
+      <div className="max-w-7xl mx-auto px-6 relative">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

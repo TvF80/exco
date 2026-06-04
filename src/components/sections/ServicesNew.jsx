@@ -112,7 +112,16 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
     <section
       id="services"
       className="min-h-svh py-20"
-      style={{ background: 'linear-gradient(rgba(10,14,26,0.94) 0%, rgba(13,13,13,0.92) 50%, rgba(10,14,26,0.94) 100%), url(/bg/bg-placeholder1.jpg) center top / cover no-repeat' }}
+      style={{
+        background: [
+          'linear-gradient(180deg, rgba(7,11,20,0.99) 0%, rgba(9,9,18,0.98) 50%, rgba(7,11,20,0.99) 100%)',
+          'linear-gradient(rgba(1,112,185,0.13) 1px, transparent 1px)',
+          'linear-gradient(90deg, rgba(1,112,185,0.13) 1px, transparent 1px)',
+          'linear-gradient(rgba(1,112,185,0.04) 1px, transparent 1px)',
+          'linear-gradient(90deg, rgba(1,112,185,0.04) 1px, transparent 1px)',
+        ].join(','),
+        backgroundSize: 'auto, 100% 96px, 96px 100%, 100% 24px, 24px 100%',
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
