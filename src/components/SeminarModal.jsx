@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react'
+import { } from 'react' // eslint-disable-line
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Download, ArrowRight } from 'lucide-react'
 
-export default function SeminarModal() {
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    // Show modal after brief delay on first visit
-    const timer = setTimeout(() => setOpen(true), 600)
-    return () => clearTimeout(timer)
-  }, [])
+export default function SeminarModal({ open, onClose }) {
+  const setOpen = onClose ? () => onClose() : () => {}
 
   return (
     <AnimatePresence>
