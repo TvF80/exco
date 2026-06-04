@@ -21,7 +21,7 @@ export const offices = [
     postal: '30-034',
     phone: '+48 12 356 24 02',
     email: 'kra@exco.pl',
-    x: 56,
+    x: 46,
     y: 71,
     serviceIds: ['outsourcing-ksiegowosci', 'outsourcing-kadr-i-plac', 'konsulting'],
     teamMemberIds: [5],
