@@ -8,9 +8,7 @@ import { BgGeoRings } from '../BgPatterns'
 const FUTURE_OFFICES = [
   { id: 'bialystok', city: 'Białystok', x: 78, y: 29, textLeft: true },
   { id: 'rzeszow',   city: 'Rzeszów',   x: 70, y: 76 },
-  { id: 'katowice',  city: 'Katowice',  x: 49, y: 68 },
   { id: 'szczecin',  city: 'Szczecin',  x: 17, y: 25 },
-  { id: 'klodzko',   city: 'Kłodzko',   x: 30, y: 65 },
 ]
 
 export default function OfficeMapNew({ onServiceClick }) {
