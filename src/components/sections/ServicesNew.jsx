@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ExternalLink, Users, BookOpen, List, ChevronRight, ChevronDown, Mail } from 'lucide-react'
 import { services } from '../../data/services'
 import { teamByService } from '../../data/team'
+import { BgCircuit } from '../BgPatterns'
 
 const TABS = [
   { id: 'opis', label: 'Opis', Icon: BookOpen },
@@ -112,18 +113,10 @@ export default function ServicesNew({ onMemberClick, activeServiceId, onServiceI
     <section
       id="services"
       className="min-h-svh py-20"
-      style={{
-        background: [
-          'linear-gradient(180deg, rgba(7,11,20,0.99) 0%, rgba(9,9,18,0.98) 50%, rgba(7,11,20,0.99) 100%)',
-          'linear-gradient(rgba(1,112,185,0.13) 1px, transparent 1px)',
-          'linear-gradient(90deg, rgba(1,112,185,0.13) 1px, transparent 1px)',
-          'linear-gradient(rgba(1,112,185,0.04) 1px, transparent 1px)',
-          'linear-gradient(90deg, rgba(1,112,185,0.04) 1px, transparent 1px)',
-        ].join(','),
-        backgroundSize: 'auto, 100% 96px, 96px 100%, 100% 24px, 24px 100%',
-      }}
+      style={{ background: '#070b14', position: 'relative', overflow: 'hidden' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <BgCircuit />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

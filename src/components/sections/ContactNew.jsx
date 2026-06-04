@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react'
 import ExcoLogo from '../ExcoLogo'
+import { BgSignal } from '../BgPatterns'
 
 export default function ContactNew() {
   const [sent, setSent] = useState(false)
@@ -16,8 +17,9 @@ export default function ContactNew() {
     <section
       id="contact"
       className="py-20"
-      style={{ background: 'linear-gradient(180deg, #0a1628 0%, #0C0800 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #060e1c 0%, #0b0600 100%)', position: 'relative', overflow: 'hidden' }}
     >
+      <BgSignal />
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

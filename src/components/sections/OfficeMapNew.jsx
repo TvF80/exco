@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Phone, Mail, X } from 'lucide-react'
 import { offices } from '../../data/offices'
 import { services } from '../../data/services'
+import { BgGeoRings } from '../BgPatterns'
 
 const FUTURE_OFFICES = [
   { id: 'bialystok', city: 'Białystok', x: 86, y: 29, textLeft: true },
@@ -19,9 +20,10 @@ export default function OfficeMapNew({ onServiceClick }) {
     <section
       id="offices"
       className="py-20"
-      style={{ background: '#0a1628' }}
+      style={{ background: '#060e1c', position: 'relative', overflow: 'hidden' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <BgGeoRings />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

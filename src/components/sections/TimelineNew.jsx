@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import { timelineEvents } from '../../data/timeline'
+import { BgHistory } from '../BgPatterns'
 
 export default function TimelineNew() {
   return (
-    <section className="py-20" style={{ background: '#0C0800' }}>
+    <section className="py-20 relative overflow-hidden" style={{ background: '#0b0600' }}>
+      <BgHistory />
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

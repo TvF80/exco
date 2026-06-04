@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { team } from '../../data/team'
+import { BgNetwork } from '../BgPatterns'
 
 const FILTERS = [
   { label: 'Wszyscy', match: null },
@@ -27,16 +28,11 @@ export default function TeamGrid({ onMemberClick }) {
   return (
     <section
       id="team"
-      className="min-h-svh py-20"
-      style={{
-        background: [
-          'linear-gradient(180deg, rgba(7,5,2,0.98) 0%, rgba(9,8,10,0.99) 100%)',
-          'radial-gradient(circle, rgba(218,91,21,0.18) 1px, transparent 1px)',
-        ].join(','),
-        backgroundSize: 'auto, 30px 30px',
-      }}
+      className="min-h-svh py-20 relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #080502 0%, #07080e 100%)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <BgNetwork />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
