@@ -6,7 +6,7 @@ export const team = [
     title: 'Członek Zarządu',
     dept: 'Zarząd',
     photo: '/team/raphael.jpg',
-    serviceIds: ['konsulting', 'due-diligence'],
+    serviceIds: ['konsulting', 'due-diligence', 'pozyskanie-finansowania'],
     tags: ['Zarząd', 'Strategia', 'EXCO Group'],
     color: '#DA5B15',
     initials: 'RV',
