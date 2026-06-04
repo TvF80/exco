@@ -5,7 +5,7 @@ import { offices } from '../../data/offices'
 import { services } from '../../data/services'
 
 const FUTURE_OFFICES = [
-  { id: 'bialystok', city: 'Białystok', x: 73, y: 27 },
+  { id: 'bialystok', city: 'Białystok', x: 72, y: 28 },
   { id: 'rzeszow',   city: 'Rzeszów',   x: 67, y: 70 },
   { id: 'katowice',  city: 'Katowice',  x: 49, y: 67 },
 ]
@@ -40,20 +40,19 @@ export default function OfficeMapNew({ onServiceClick }) {
             style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', minHeight: 360 }}
           >
             <svg viewBox="8 0 84 92" className="w-full max-w-xs">
-              {/* Poland outline */}
-              {/* Poland outline — formula: x=5.93*lon-64, y=-13.67*lat+753.6
-                  Verified against: Warszawa(61,40), Kraków(57,72), Gdańsk(50,13),
-                  Wrocław(33,55), Poznań(37,33), Radom(58,50) */}
+              {/* Poland outline — x=5.93*lon-64, y=-13.67*lat+753.6 */}
               <path
-                d="M20,17 L28,13 L33,9 L36,7 L40,5 L45,5
-                   L47,9 L52,9
-                   L71,10 L78,11
-                   L76,22 L76,33 L78,41 L76,49 L79,57 L78,63
-                   L71,73
-                   L70,83
-                   L55,81
-                   L47,77 L42,72 L39,69 L34,61 L29,58 L25,57
-                   L25,42 L22,38 L22,31 L20,25
+                d="M21,17 L28,14 L36,9 L41,9
+                   L43,11 L46,6 L49,10
+                   L53,11 L58,10 L64,10
+                   L71,14 L76,14
+                   L78,20 L77,28 L76,35 L76,42
+                   L78,50 L79,53
+                   L78,61 L76,65 L77,69 L71,73
+                   L69,76 L60,78 L55,81
+                   L53,80 L48,77
+                   L48,70 L45,66 L42,65 L36,62 L28,59 L25,56
+                   L23,50 L23,44 L22,38 L21,32 L21,27 L21,22
                    Z"
                 fill="rgba(1,112,185,0.15)"
                 stroke="rgba(1,112,185,0.4)"
