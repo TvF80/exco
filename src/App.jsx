@@ -1,16 +1,24 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, lazy, Suspense } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 import NavbarNew from './components/layout/NavbarNew'
 import HeroNew from './components/sections/HeroNew'
 import StatsNew from './components/sections/StatsNew'
 import TeamGrid from './components/sections/TeamGrid'
-import ServicesNew from './components/sections/ServicesNew'
-import OfficeMapNew from './components/sections/OfficeMapNew'
-import TimelineNew from './components/sections/TimelineNew'
-import ContactNew from './components/sections/ContactNew'
 import TeamMemberModal from './components/TeamMemberModal'
 import { teamById } from './data/team'
+
+// Lazy load below-fold sections
+const ServicesNew  = lazy(() => import('./components/sections/ServicesNew'))
+const OfficeMapNew = lazy(() => import('./components/sections/OfficeMapNew'))
+const TimelineNew  = lazy(() => import('./components/sections/TimelineNew'))
+const ContactNew   = lazy(() => import('./components/sections/ContactNew'))
+
+const SectionFallback = () => (
+  <div className="py-20 flex items-center justify-center" style={{ background: '#07080e' }}>
+    <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: '#DA5B15 transparent transparent transparent' }} />
+  </div>
+)
 
 export default function App() {
   const [activeMemberId, setActiveMemberId] = useState(null)
@@ -23,7 +31,7 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const openMember = useCallback((id) => setActiveMemberId(id), [])
+  const openMember  = useCallback((id) => setActiveMemberId(id), [])
   const closeMember = useCallback(() => setActiveMemberId(null), [])
 
   const goToService = useCallback((sid) => {
@@ -35,7 +43,6 @@ export default function App() {
 
   const activeMember = activeMemberId ? teamById(activeMemberId) : null
 
-  // Scroll progress
   const docH = typeof document !== 'undefined' ? document.documentElement.scrollHeight - window.innerHeight : 1
   const progress = docH > 0 ? Math.min(scrollY / docH, 1) : 0
 
@@ -52,14 +59,22 @@ export default function App() {
         <HeroNew />
         <StatsNew />
         <TeamGrid onMemberClick={openMember} />
-        <ServicesNew
-          onMemberClick={openMember}
-          activeServiceId={activeServiceId}
-          onServiceIdConsumed={() => setActiveServiceId(null)}
-        />
-        <OfficeMapNew />
-        <TimelineNew />
-        <ContactNew />
+        <Suspense fallback={<SectionFallback />}>
+          <ServicesNew
+            onMemberClick={openMember}
+            activeServiceId={activeServiceId}
+            onServiceIdConsumed={() => setActiveServiceId(null)}
+          />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <OfficeMapNew />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <TimelineNew />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ContactNew />
+        </Suspense>
       </main>
 
       <footer
@@ -89,7 +104,7 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Back to top button */}
+      {/* Back to top */}
       <AnimatePresence>
         {scrollY > 400 && (
           <motion.button
@@ -108,13 +123,11 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Global Team Member Modal */}
       <TeamMemberModal
         member={activeMember}
         onClose={closeMember}
         onServiceClick={goToService}
       />
-
     </>
   )
 }
