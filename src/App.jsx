@@ -10,6 +10,7 @@ import OfficeMapNew from './components/sections/OfficeMapNew'
 import TimelineNew from './components/sections/TimelineNew'
 import ContactNew from './components/sections/ContactNew'
 import TeamMemberModal from './components/TeamMemberModal'
+import SeminarModal from './components/SeminarModal'
 import { teamById } from './data/team'
 
 export default function App() {
@@ -114,6 +115,9 @@ export default function App() {
         onClose={closeMember}
         onServiceClick={goToService}
       />
+
+      {/* Seminar program splash */}
+      <SeminarModal />
     </>
   )
 }

@@ -6,7 +6,7 @@ import { services } from '../../data/services'
 
 const FUTURE_OFFICES = [
   { id: 'bialystok', city: 'Białystok', x: 86, y: 29, textLeft: true },
-  { id: 'rzeszow',   city: 'Rzeszów',   x: 78, y: 71, textLeft: true },
+  { id: 'rzeszow',   city: 'Rzeszów',   x: 78, y: 76, textLeft: true },
   { id: 'katowice',  city: 'Katowice',  x: 49, y: 68 },
 ]
 
