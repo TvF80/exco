@@ -4,6 +4,12 @@ import { MapPin, Phone, Mail, X } from 'lucide-react'
 import { offices } from '../../data/offices'
 import { services } from '../../data/services'
 
+const FUTURE_OFFICES = [
+  { id: 'bialystok', city: 'Białystok', x: 73, y: 27 },
+  { id: 'rzeszow',   city: 'Rzeszów',   x: 67, y: 70 },
+  { id: 'katowice',  city: 'Katowice',  x: 49, y: 67 },
+]
+
 export default function OfficeMapNew({ onServiceClick }) {
   const [active, setActive] = useState(null)
   const office = active ? offices.find((o) => o.id === active) : null
@@ -55,6 +61,30 @@ export default function OfficeMapNew({ onServiceClick }) {
                 strokeLinejoin="round"
                 strokeLinecap="round"
               />
+              {/* Future office proposals */}
+              {FUTURE_OFFICES.map((f) => (
+                <g key={f.id}>
+                  <circle
+                    cx={f.x} cy={f.y} r={3.5}
+                    fill="rgba(218,91,21,0.08)"
+                    stroke="rgba(218,91,21,0.45)"
+                    strokeWidth={0.8}
+                    strokeDasharray="2 1.5"
+                  />
+                  <text
+                    x={f.x} y={f.y + 1.3}
+                    fontSize="3.5" fill="rgba(218,91,21,0.7)"
+                    fontWeight="700" fontFamily="Inter, sans-serif"
+                    textAnchor="middle"
+                  >?</text>
+                  <text
+                    x={f.x + 5} y={f.y + 1.5}
+                    fontSize="3.5" fill="rgba(255,255,255,0.35)"
+                    fontWeight="400" fontFamily="Inter, sans-serif"
+                  >{f.city}</text>
+                </g>
+              ))}
+
               {offices.map((o) => {
                 const isActive = active === o.id
                 return (
