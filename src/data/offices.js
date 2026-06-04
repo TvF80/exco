@@ -60,7 +60,7 @@ export const offices = [
     postal: '60-351',
     phone: '+48 61 250 33 00',
     email: 'poz@exco.pl',
-    x: 33,
+    x: 23,
     y: 39,
     serviceIds: ['outsourcing-ksiegowosci', 'outsourcing-kadr-i-plac'],
     teamMemberIds: [],
