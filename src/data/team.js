@@ -52,7 +52,7 @@ export const team = [
     tags: ['Analizy finansowe', 'Projekty inwestycyjne', 'Due Diligence', 'Wycena'],
     color: '#0170b9',
     initials: 'TF',
-    bio: 'Tomasz specjalizuje się w kompleksowych analizach finansowych, wycenie przedsiębiorstw i badaniach due diligence. Kieruje projektami pozyskiwania finansowania — przygotowuje biznesplany, modele finansowe i dokumentację do wniosków unijnych. Ma za sobą ponad 50 zakończonych projektów inwestycyjnych i transakcji M&A.',
+    bio: 'Tomasz specjalizuje się w kompleksowych analizach finansowych, wycenie przedsiębiorstw i badaniach due diligence. Kieruje projektami inwestycyjnymi — przygotowuje biznesplany, modele finansowe oraz dokumentację transakcyjną. Ma za sobą ponad 50 zakończonych projektów inwestycyjnych i transakcji M&A.',
     linkedin: null,
     email: 'tomasz.fordymacki@exco.pl',
   },
