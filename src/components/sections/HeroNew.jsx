@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, FileText, Calendar, ArrowRight } from 'lucide-react'
+import { ChevronDown, FileText, ArrowRight } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import ParticleCanvas from '../ParticleCanvas'
 import ExcoLogo from '../ExcoLogo'
@@ -159,47 +159,47 @@ export default function HeroNew({ onScrollDown }) {
           </button>
         </motion.div>
 
-        {/* ── Seminar card ── */}
-        <motion.button
-          onClick={() => setSeminarOpen(true)}
-          initial={{ opacity: 0, y: 24, rotate: -1 }}
-          animate={{ opacity: 1, y: 0, rotate: -1 }}
-          whileHover={{ rotate: 0, scale: 1.02, y: -2 }}
-          transition={{ delay: 1.0, duration: 0.6, type: 'spring', stiffness: 280, damping: 22 }}
-          className="relative mt-10 mx-auto flex items-center gap-5 px-7 py-5 rounded-2xl text-left max-w-lg w-full cursor-pointer group"
-          style={{
-            background: 'linear-gradient(135deg, rgba(218,91,21,0.18) 0%, rgba(1,112,185,0.12) 100%)',
-            border: '1px solid rgba(218,91,21,0.45)',
-            boxShadow: '0 0 40px rgba(218,91,21,0.15), inset 0 1px 0 rgba(255,255,255,0.08)',
-          }}
+        {/* ── Seminar card ── entry → float → hover (3 nested layers) */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.05, duration: 0.65, type: 'spring', stiffness: 260, damping: 24 }}
+          className="mt-10 mb-20 mx-auto max-w-lg w-full"
         >
-          {/* Icon */}
-          <div className="shrink-0 w-14 h-14 rounded-xl flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #DA5B15, #c44e10)' }}>
-            <FileText size={26} className="text-white" />
-          </div>
-
-          {/* Text */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full"
-                style={{ background: 'rgba(218,91,21,0.3)', color: '#ff9a55' }}>
-                Program
-              </span>
-            </div>
-            <p className="text-white font-bold text-base leading-tight">Seminarium EXCO A2A Polska 2026</p>
-            <p className="text-white/45 text-sm mt-0.5">Kliknij aby otworzyć plan spotkania →</p>
-          </div>
-
-          {/* Arrow */}
-          <ArrowRight size={20} className="shrink-0 text-white/40 group-hover:text-white/80 group-hover:translate-x-1 transition-all" />
-
-          {/* Corner accent */}
-          <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-2xl pointer-events-none">
-            <div className="absolute -top-1 -right-1 w-8 h-8 rotate-45"
-              style={{ background: 'rgba(218,91,21,0.25)' }} />
-          </div>
-        </motion.button>
+          <motion.div
+            animate={{ y: [0, -7, 0] }}
+            transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut', repeatDelay: 1.2, delay: 2.5 }}
+          >
+            <motion.button
+              onClick={() => setSeminarOpen(true)}
+              whileHover={{ scale: 1.035, y: -5, rotate: 0 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+              className="relative flex items-center gap-5 px-7 py-5 rounded-2xl text-left w-full cursor-pointer group"
+              style={{
+                rotate: '-1deg',
+                background: 'linear-gradient(135deg, rgba(218,91,21,0.18) 0%, rgba(1,112,185,0.12) 100%)',
+                border: '1px solid rgba(218,91,21,0.45)',
+                boxShadow: '0 0 40px rgba(218,91,21,0.15), inset 0 1px 0 rgba(255,255,255,0.08)',
+              }}
+            >
+              <div className="shrink-0 w-14 h-14 rounded-xl flex items-center justify-center"
+                style={{ background: 'linear-gradient(135deg, #DA5B15, #c44e10)' }}>
+                <FileText size={26} className="text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full inline-block mb-1"
+                  style={{ background: 'rgba(218,91,21,0.3)', color: '#ff9a55' }}>Program</span>
+                <p className="text-white font-bold text-base leading-tight">Seminarium EXCO A2A Polska 2026</p>
+                <p className="text-white/45 text-sm mt-0.5">Kliknij aby otworzyć plan spotkania</p>
+              </div>
+              <ArrowRight size={20} className="shrink-0 text-white/40 group-hover:text-white/80 group-hover:translate-x-1 transition-all duration-200" />
+              <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-2xl pointer-events-none">
+                <div className="absolute -top-1 -right-1 w-8 h-8 rotate-45" style={{ background: 'rgba(218,91,21,0.25)' }} />
+              </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </div>
 
       <SeminarModal open={seminarOpen} onClose={() => setSeminarOpen(false)} />

@@ -1,9 +1,7 @@
-import { } from 'react' // eslint-disable-line
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Download, ArrowRight } from 'lucide-react'
 
 export default function SeminarModal({ open, onClose }) {
-  const setOpen = onClose ? () => onClose() : () => {}
 
   return (
     <AnimatePresence>
@@ -15,7 +13,7 @@ export default function SeminarModal({ open, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
+            onClick={onClose}
             className="fixed inset-0 z-[200]"
             style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
           />
@@ -63,7 +61,7 @@ export default function SeminarModal({ open, onClose }) {
                   Pobierz PDF
                 </a>
                 <button
-                  onClick={() => setOpen(false)}
+                  onClick={onClose}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:text-white transition-all"
                   style={{ background: 'rgba(255,255,255,0.06)' }}
                 >
@@ -89,7 +87,7 @@ export default function SeminarModal({ open, onClose }) {
             >
               <p className="text-white/30 text-xs">EXCO A2A Polska · Walne Spotkanie 2026</p>
               <button
-                onClick={() => setOpen(false)}
+                onClick={onClose}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-95"
                 style={{ background: 'linear-gradient(135deg, #DA5B15, #c44e10)' }}
               >
