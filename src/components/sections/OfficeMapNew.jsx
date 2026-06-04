@@ -5,8 +5,8 @@ import { offices } from '../../data/offices'
 import { services } from '../../data/services'
 
 const FUTURE_OFFICES = [
-  { id: 'bialystok', city: 'Białystok', x: 82, y: 29, textLeft: true },
-  { id: 'rzeszow',   city: 'Rzeszów',   x: 72, y: 71 },
+  { id: 'bialystok', city: 'Białystok', x: 86, y: 29, textLeft: true },
+  { id: 'rzeszow',   city: 'Rzeszów',   x: 78, y: 71, textLeft: true },
   { id: 'katowice',  city: 'Katowice',  x: 49, y: 68 },
 ]
 
