@@ -35,16 +35,17 @@ export default function TeamMemberModal({ member, onClose, onServiceClick }) {
         <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${member.color}, transparent)` }} />
 
         {/* Photo header */}
-        <div className="relative">
+        <div className="relative bg-[#0d0d0d]" style={{ minHeight: '320px' }}>
           <img
             src={member.photo}
             alt={member.name}
-            className="w-full h-52 object-cover object-top"
+            className="w-full h-full object-contain"
+            style={{ maxHeight: '380px', display: 'block' }}
             onError={(e) => { e.target.style.display = 'none' }}
           />
           <div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(to top, #111 0%, rgba(17,17,17,0.2) 55%, transparent 100%)' }}
+            style={{ background: 'linear-gradient(to top, #111 0%, rgba(17,17,17,0.05) 40%, transparent 100%)' }}
           />
 
           {/* Close button */}
