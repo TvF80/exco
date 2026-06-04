@@ -140,6 +140,46 @@ export default function TeamGrid({ onMemberClick }) {
               </motion.button>
             ))}
           </AnimatePresence>
+
+          {/* Recruitment tile — visible only on "Wszyscy" filter */}
+          {!filter.match && (
+            <motion.a
+              href="https://exco.pl/kariera"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.28, delay: 0.3 }}
+              className="group flex flex-col items-center gap-2 cursor-pointer"
+            >
+              <div
+                className="relative w-full aspect-square rounded-2xl overflow-hidden flex items-center justify-center transition-all duration-300 group-hover:scale-105"
+                style={{ background: 'rgba(218,91,21,0.08)', border: '2px dashed rgba(218,91,21,0.35)' }}
+              >
+                <div className="flex flex-col items-center gap-1.5">
+                  <span
+                    className="text-4xl font-bold leading-none group-hover:scale-110 transition-transform duration-300"
+                    style={{ color: '#DA5B15' }}
+                  >?</span>
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-2"
+                    style={{ background: 'linear-gradient(to top, rgba(218,91,21,0.55) 0%, transparent 60%)' }}
+                  >
+                    <div className="w-full py-1 rounded-lg text-center text-[10px] font-bold text-white tracking-wide"
+                      style={{ background: '#DA5B15' }}>
+                      DOŁĄCZ
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 group-hover:h-1 transition-all duration-300"
+                  style={{ background: '#DA5B15' }} />
+              </div>
+              <div className="text-center">
+                <p className="text-white text-xs font-semibold leading-tight">Dołącz</p>
+                <p className="text-white/30 text-[10px] leading-tight hidden sm:block">do nas</p>
+              </div>
+            </motion.a>
+          )}
         </div>
       </div>
     </section>
