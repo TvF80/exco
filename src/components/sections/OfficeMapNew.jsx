@@ -5,9 +5,9 @@ import { offices } from '../../data/offices'
 import { services } from '../../data/services'
 
 const FUTURE_OFFICES = [
-  { id: 'bialystok', city: 'Białystok', x: 72, y: 28 },
-  { id: 'rzeszow',   city: 'Rzeszów',   x: 67, y: 70 },
-  { id: 'katowice',  city: 'Katowice',  x: 49, y: 67 },
+  { id: 'bialystok', city: 'Białystok', x: 82, y: 29, textLeft: true },
+  { id: 'rzeszow',   city: 'Rzeszów',   x: 72, y: 71 },
+  { id: 'katowice',  city: 'Katowice',  x: 49, y: 68 },
 ]
 
 export default function OfficeMapNew({ onServiceClick }) {
@@ -40,19 +40,19 @@ export default function OfficeMapNew({ onServiceClick }) {
             style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', minHeight: 360 }}
           >
             <svg viewBox="8 0 84 92" className="w-full max-w-xs">
-              {/* Poland outline — x=5.93*lon-64, y=-13.67*lat+753.6 */}
+              {/* Poland outline — x=7.9*lon-101.4, y=(54.9-lat)*13.56+5 — poprawne proporcje */}
               <path
-                d="M21,17 L28,14 L36,9 L41,9
-                   L43,11 L46,6 L49,10
-                   L53,11 L58,10 L64,10
-                   L71,14 L76,14
-                   L78,20 L77,28 L76,35 L76,42
-                   L78,50 L79,53
-                   L78,61 L76,65 L77,69 L71,73
-                   L69,76 L60,78 L55,81
-                   L53,80 L48,77
-                   L48,70 L45,66 L42,65 L36,62 L28,59 L25,56
-                   L23,50 L23,44 L22,38 L21,32 L21,27 L21,22
+                d="M12,18 L22,15 L31,11 L38,10
+                   L43,13 L46,9 L49,13
+                   L54,13 L61,11 L69,12
+                   L78,16 L84,16
+                   L87,21 L87,29 L85,38 L85,44
+                   L88,51 L89,54
+                   L88,62 L84,66 L86,70 L79,74
+                   L77,77 L64,80 L58,82
+                   L55,81 L48,78
+                   L48,71 L44,67 L40,66 L32,63 L22,61 L18,58
+                   L15,51 L15,46 L14,40 L13,34 L13,28 L13,24
                    Z"
                 fill="rgba(1,112,185,0.15)"
                 stroke="rgba(1,112,185,0.4)"
@@ -77,9 +77,10 @@ export default function OfficeMapNew({ onServiceClick }) {
                     textAnchor="middle"
                   >?</text>
                   <text
-                    x={f.x + 5} y={f.y + 1.5}
+                    x={f.textLeft ? f.x - 5 : f.x + 5} y={f.y + 1.5}
                     fontSize="3.5" fill="rgba(255,255,255,0.35)"
                     fontWeight="400" fontFamily="Inter, sans-serif"
+                    textAnchor={f.textLeft ? 'end' : 'start'}
                   >{f.city}</text>
                 </g>
               ))}
